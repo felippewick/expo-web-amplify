@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn global add expo-cli
+        - npm install
+    build:
+      commands:
+        - APP_ENV=${APP_ENV}
+        - npx expo export -p web
+  artifacts:
+    baseDirectory: dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+      - $(npm root --global)/**/*
